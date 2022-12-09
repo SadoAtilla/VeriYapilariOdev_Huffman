@@ -1,0 +1,119 @@
+package com.mycompany.udev;
+
+import java.util.HashMap;
+import java.util.Scanner;
+
+/**
+ *
+ * @author sadik
+ */
+public class Udev {
+
+    public static void main(String[] args) {
+        HashMap<String, String> degerler = new HashMap<String, String>();
+        Scanner input = new Scanner(System.in);
+        String[] a = new String[8];
+        String b ;
+        String[] output = new String[8];
+        String[] frekanslist = new String[4];
+        int[] frekans = new int[4];
+        int uzunluk = a.length;
+        int frekansA = 0;
+        int frekansB = 0;
+        int frekansC = 0;
+        int frekansD = 0;
+        
+        
+        
+        System.out.println("Sadece A B C D değerleri içeren bir code giriniz: ");
+        for(int i = 0;i<uzunluk ;i++){
+            b = input.nextLine();
+            a[i] = b;
+        }
+        for(int j = 0;j<uzunluk; j++){
+            System.out.print(a[j]+ " ");
+        }
+        System.out.println(" ");
+        
+        
+        
+        
+        for(int i = 0;i<uzunluk; i++){
+            if(a[i].equals("A")){
+                frekansA ++;
+            }
+            if(a[i].equals("B")){
+                frekansB ++;
+            }
+            if(a[i].equals("C")){
+                frekansC ++;
+            }
+            if(a[i].equals("D")){
+                frekansD ++;
+            }
+        }
+        
+        
+        int tmp = 0 , k = 0 , l =0;
+        String tmp1 = "";
+        
+        frekanslist[0] = "A";
+        frekanslist[1] = "B";
+        frekanslist[2] = "C";
+        frekanslist[3] = "D";
+        
+        frekans[0] = frekansA;
+        frekans[1] = frekansB;
+        frekans[2] = frekansC;
+        frekans[3] = frekansD;
+        
+        for(k=0;k<frekans.length;k++){
+            for(l=0;l<frekans.length-1;l++){
+                if(frekans[l] > frekans[l+1]){
+                   tmp = frekans[l];
+                   frekans[l] = frekans[l+1];
+                   frekans[l+1] = tmp;
+                   tmp1 = frekanslist[l];
+                   frekanslist[l] = frekanslist[l+1];
+                   frekanslist[l+1] = tmp1;
+                }
+            }
+        }
+        
+        degerler.put(frekanslist[0],"00");
+        degerler.put(frekanslist[1],"01");
+        degerler.put(frekanslist[2],"10");
+        degerler.put(frekanslist[3],"11");
+        
+        
+        
+        for(int j = 0;j<uzunluk; j++){
+            if(a[j].equals("A")){
+                output[j] = degerler.get("A");
+            }
+            if(a[j].equals("B")){
+                output[j] = degerler.get("B");
+            }
+            if(a[j].equals("C")){
+                output[j] = degerler.get("C");
+            }
+            if(a[j].equals("D")){
+                output[j] = degerler.get("D");
+            }
+        }
+        for(int j = 0;j<uzunluk; j++){
+            System.out.print(output[j]+" ");
+        }
+        System.out.println(" ");
+        
+        for(int j = 0;j<frekanslist.length; j++){
+            System.out.print(frekanslist[j]+" ");
+        }
+        System.out.println(" ");
+        
+        for(int j = 0;j<frekanslist.length; j++){
+            System.out.print(frekans[j]+" ");
+        }
+        System.out.println(" ");
+    }
+}
